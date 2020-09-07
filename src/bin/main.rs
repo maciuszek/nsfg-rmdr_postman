@@ -36,6 +36,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     use postman::schema::channels::dsl::*;
 
     loop {
+        println!("Running interval...");
+        
         let current_time = SystemTime::now().duration_since(UNIX_EPOCH).expect("Time has reversed.").as_secs();
 
         let results = reminders.filter(time.le(current_time as u32))
